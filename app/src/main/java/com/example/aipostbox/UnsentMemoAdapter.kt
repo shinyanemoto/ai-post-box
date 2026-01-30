@@ -3,13 +3,11 @@ package com.example.aipostbox
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class UnsentMemoAdapter(
     private val memos: List<Memo>,
-    private val onSend: (Memo) -> Unit,
     private val onDelete: (Memo) -> Unit
 ) : RecyclerView.Adapter<UnsentMemoAdapter.MemoViewHolder>() {
 
@@ -22,7 +20,6 @@ class UnsentMemoAdapter(
     override fun onBindViewHolder(holder: MemoViewHolder, position: Int) {
         val memo = memos[position]
         holder.memoText.text = memo.text
-        holder.sendButton.setOnClickListener { onSend(memo) }
         holder.deleteButton.setOnClickListener { onDelete(memo) }
     }
 
@@ -30,7 +27,6 @@ class UnsentMemoAdapter(
 
     class MemoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val memoText: TextView = view.findViewById(R.id.memoText)
-        val sendButton: Button = view.findViewById(R.id.sendButton)
         val deleteButton: Button = view.findViewById(R.id.deleteButton)
     }
 }

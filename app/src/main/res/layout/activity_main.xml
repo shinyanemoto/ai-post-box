@@ -28,20 +28,18 @@
         android:layout_marginTop="12dp"
         android:text="未送信に追加" />
 
-    <TextView
-        android:id="@+id/queueLabel"
+    <Button
+        android:id="@+id/unsentListButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="未送信メモ"
-        android:textColor="@android:color/white"
-        android:textSize="16sp" />
+        android:text="未送信メモ一覧へ" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/unsentList"
+    <Button
+        android:id="@+id/settingsButton"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_weight="1" />
+        android:text="設定" />
 
 </LinearLayout>

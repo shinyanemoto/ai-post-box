@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/inputField"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="top|start"
         android:hint="今思っていることを入力"
         android:inputType="textMultiLine|textCapSentences"
-        android:padding="24dp"
+        android:maxLines="4"
+        android:minLines="2"
+        android:padding="12dp"
         android:textColor="@android:color/white"
         android:textColorHint="#80FFFFFF"
         android:textSize="18sp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/addMemoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="未送信に追加" />
+
+    <TextView
+        android:id="@+id/queueLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="未送信メモ"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/unsentList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

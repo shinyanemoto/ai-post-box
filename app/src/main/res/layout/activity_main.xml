@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="top|start"
-        android:hint="今思っていることを入力"
         android:inputType="textMultiLine|textCapSentences"
         android:maxLines="4"
         android:minLines="2"

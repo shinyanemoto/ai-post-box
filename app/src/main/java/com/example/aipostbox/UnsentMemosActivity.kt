@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,7 @@ class UnsentMemosActivity : AppCompatActivity() {
         val sendAllButton = findViewById<Button>(R.id.sendAllButton)
         val recyclerView = findViewById<RecyclerView>(R.id.unsentList)
 
-        val aiTargets = listOf("選択してください", "ChatGPT", "Gemini", "Claude")
+        val aiTargets = AiTargetStore.targets
         val spinnerAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
@@ -28,6 +29,19 @@ class UnsentMemosActivity : AppCompatActivity() {
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
+        spinner.setSelection(AiTargetStore.selectedIndex(this))
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: android.view.View?,
+                position: Int,
+                id: Long
+            ) {
+                AiTargetStore.saveSelectedIndex(this@UnsentMemosActivity, position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) = Unit
+        }
 
         adapter = UnsentMemoAdapter(
             MemoRepository.all(),
@@ -41,6 +55,7 @@ class UnsentMemosActivity : AppCompatActivity() {
 
         sendAllButton.setOnClickListener {
             val selection = spinner.selectedItemPosition
+            AiTargetStore.saveSelectedIndex(this, selection)
             if (selection == 0) {
                 Toast.makeText(this, "AIを選択してください", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
